@@ -13,7 +13,6 @@ export class App extends Component {
   };
 
   newFeedback = event => {
-    console.log(event);
     if (event === 'Good') {
       this.setState({ good: this.state.good + 1 });
     } else if (event === 'Neutral') {

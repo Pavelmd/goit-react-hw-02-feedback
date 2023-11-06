@@ -12,14 +12,10 @@ export class App extends Component {
     bad: 0,
   };
 
-  newFeedback = event => {
-    if (event === 'Good') {
-      this.setState({ good: this.state.good + 1 });
-    } else if (event === 'Neutral') {
-      this.setState({ neutral: this.state.neutral + 1 });
-    } else if (event === 'Bad') {
-      this.setState({ bad: this.state.bad + 1 });
-    }
+  newFeedback = option => {
+    this.setState(prevState => ({
+      [option]: prevState[option] + 1,
+    }));
   };
 
   countTotalFeedback = () => {
@@ -35,11 +31,12 @@ export class App extends Component {
   };
 
   render() {
+    const options = Object.keys(this.state);
     return (
       <div className={css.container}>
         <Section title="Please leave feedback">
           <FeedbackOptions
-            options={['Good', 'Neutral', 'Bad']}
+            options={options}
             onLeaveFeedback={this.newFeedback}
           />
         </Section>
